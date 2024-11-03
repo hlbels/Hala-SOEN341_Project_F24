@@ -1,0 +1,709 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #9b59b6, #d4a5ff, #b39ddb, #8e44ad);
+  background-size: 400% 400%;
+  animation: backgroundMove 10s ease infinite;
+  overflow: auto;
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 100px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  overflow: hidden;
+}
+
+/* Header (for Sharky Peer Assessment Title) */
+.header1 {
+  width: 100%;
+  height: 80px;
+  background-color: #9b59b6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 25px 0 black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+}
+
+/* Sidebar with hover effect */
+.sidebar {
+  position: fixed;
+  top: 80px; /* No gap between sidebar and header */
+  left: -200px; /* Initially hidden */
+  width: 200px;
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 100;
+  transition: left 0.3s ease; /* Smooth transition */
+ 
+}
+
+/* Adjusting the hover effect */
+.container:hover .sidebar {
+  left: 0; /* Slide in when the container is hovered */
+}
+
+/* Sidebar menu buttons */
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width:100%; 
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  background-color: #9b59b6;
+  border: 2px solid #9b59b6;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  
+}
+
+.sidebar ul li a:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+/* Homepage Styling */
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 150px;
+  width: 100%;
+}
+
+.homepage-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  text-align: center;
+}
+
+.homepage-content h2 {
+  font-size: 30px;
+  color: #6c3483;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.homepage-content p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.menu-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-btn {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 10px 30px;
+  background-color: #9b59b6;
+  border: 2px solid #9b59b6;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.menu-btn:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+/* Welcomepage Improvements */
+.intro-section p,
+.features-section ul,
+.instructor-section p,
+.cta-section p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 32px;
+  color: #6c3483;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.features-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.features-section ul li {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.features-section ul li .icon {
+  margin-right: 10px;
+  color: #9b59b6;
+  font-size: 22px;
+}
+
+.cta-section {
+  margin-top: 40px;
+}
+
+.cta-section .cta-paragraph {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #6c3483;
+}
+
+.cta-section .menu-btn {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 30px;
+}
+
+/* Team Management Page Styles */
+.description {
+  margin-top: 100px;
+}
+
+.menu-buttons-top {
+  position: absolute;
+  top: 150px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-buttons .btn {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #9b59b6;
+  border: 2px solid #9b59b6;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+}
+
+.menu-buttons .btn:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+.teamform,
+.csv-upload {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #9b59b6;
+  outline: none;
+  color: #333;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+input:focus,
+select:focus {
+  border-color: #9b59b6;
+}
+
+button,
+.btn {
+  background: #9b59b6;
+  border: 2px solid #9b59b6;
+  padding: 10px 30px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+/* Show Teams Page Styles */
+.options-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+.options h2 {
+  font-size: 24px;
+  color: #6c3483;
+  margin-bottom: 20px;
+}
+
+.option-btn {
+  margin: 10px;
+  padding: 15px 30px;
+  background-color: #9b59b6;
+  border: 2px solid #9b59b6;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+/* Teams Container */
+.teams-container,
+.modify-teams-container,
+.add-member-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  max-width: 800px;
+  width: 100%;
+  text-align: left;
+}
+
+.teams-container h3,
+.modify-teams-container h3,
+.add-member-container h3 {
+  font-size: 22px;
+  color: #6a0dad;
+  margin-bottom: 15px;
+}
+
+.team-item {
+  font-size: 18px;
+  color: #6a0dad;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.team-item:last-child {
+  border-bottom: none;
+}
+
+.team-item ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.team-item li {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.btn-remove {
+  margin-left: 10px;
+  background-color: #e74c3c;
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-remove:hover {
+  background-color: #c0392b;
+}
+
+select {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.options-container h2 {
+  color: #6c3483;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* SignUp Page Styles */
+.signup-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #333;
+  margin-top: 100px;
+}
+
+.signup-box h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6c3483;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.form-container .user-box {
+  margin-bottom: 20px;
+}
+
+.form-container .input-text {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #9b59b6;
+  outline: none;
+  color: #333;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.form-container .input-text:focus {
+  border-color: #9b59b6;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.login-link {
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #9b59b6;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  color: #7d3c98;
+}
+
+/* LogIn Page Styles */
+.login-box {
+  width: 100%;
+  max-width: 450px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #333;
+  margin-top: 150px;
+}
+
+.login-box h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6c3483;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.switch-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px;
+  color: #9b59b6;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.switch-btn.active {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.switch-btn:hover {
+  color: #7d3c98;
+}
+
+.form-container .user-box {
+  margin-bottom: 20px;
+}
+
+.form-container .input-text {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #9b59b6;
+  outline: none;
+  color: #333;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.input-text::placeholder {
+  color: #aaa;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.input-text:focus::placeholder {
+  color: transparent;
+}
+
+.input-text:focus {
+  border-color: #9b59b6;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Extra Links Styling */
+.extra-links {
+  margin-top: 20px;
+}
+
+.extra-links p {
+  margin: 10px 0;
+}
+
+.extra-links a {
+  color: #9b59b6;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  color: #7d3c98;
+}
+
+/* ContactUs style */
+.contact-container {
+  background-color: white;
+  color: #4b0082;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #6a0dad;
+}
+
+h4 {
+  margin-top: 20px;
+  color: #6a0dad;
+}
+
+.contact-info p {
+  margin: 10px 0;
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Container for the entire assessment page */
+.assessment-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* Match the light background style */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  margin-top: 100px; /* Ensure space below the header */
+  max-width: 800px; /* Consistent with homepage content */
+  text-align: center;
+}
+
+/* Style for the assessment message box */
+.assessment-box {
+  background-color: #f0f0f0; /* Light gray background for the box */
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin-bottom: 20px;
+}
+
+/* Style for the heading */
+.assessment-box h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #6c3483; /* Same purple as homepage headings */
+  text-transform: uppercase; /* Consistent with other titles */
+}
+
+/* Style for the text inside the box */
+.assessment-box p {
+  font-size: 18px;
+  color: #333; /* Dark gray text for regular text */
+}
+
+/* Style for the strong element (selected member name) */
+.assessment-box p strong {
+  color: #6a0dad; /* Lighter purple for emphasis */
+  font-weight: bold;
+}
+
+/* Section for ShowTeams, addition & transfer of styling from ShowTeams*/
+.show-teams-container {
+  text-align: left;
+  padding: 20px;
+}
+
+.team-item{
+  margin: 10px 0;
+}
+
+.team-selection-container, .member-selection-container,.evaluation-link-container {
+  margin-top: 20px;
+}
+
+.team-button{
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #9b59b6;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.team-button:hover {
+  background-color: #7d3c98;
+}
+
