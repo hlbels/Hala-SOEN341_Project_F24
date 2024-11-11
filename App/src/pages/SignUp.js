@@ -22,25 +22,36 @@ const SignUp = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      // Sign up the user and set role in user_metadata
       const { data, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
         options: {
           data: {
             userName: formData.userName,
+            role: formData.role, // Adding role in authentication table
           },
         },
       });
 
+      if (error) throw error;
+
       alert("Check your email for Verification link");
 
+      // Insert role into the 'users' table with is_teacher boolean
       const { data: insertData, error: insertError } = await supabase
         .from("users")
         .insert([
-          { email: formData.email, is_teacher: formData.role === "teacher" },
+          {
+            email: formData.email,
+            is_teacher: formData.role === "teacher", // Set boolean based on role
+          },
         ]);
 
       if (insertError) throw insertError;
+
+      // Navigate to login after successful signup
+      navigate("/login");
     } catch (error) {
       alert(error.message);
     }

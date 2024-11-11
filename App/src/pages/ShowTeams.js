@@ -1,133 +1,201 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../client";
-import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const ShowTeams = () => {
-  const [teams, setTeams] = useState([]); // Holds the teams fetched from the database
-  const [selectedTeam, setSelectedTeam] = useState(""); // Holds the selected team from the dropdown
-  const [teamMembers, setTeamMembers] = useState([]); // Holds the team members for the selected team
-  const [selectedMember, setSelectedMember] = useState(""); // Will hold the selected team member for evaluation
+  const [teams, setTeams] = useState([]);
+  const [userTeam, setUserTeam] = useState(null);
+  const [requestTeamId, setRequestTeamId] = useState(null);
+  const [requestMessage, setRequestMessage] = useState("");
 
   useEffect(() => {
-    const fetchTeams = async () => {
-      const { data: teamsData, error } = await supabase
+    const fetchUserTeamAndTeams = async () => {
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+
+      if (userError || !user) {
+        console.error("Error fetching user:", userError?.message);
+        return;
+      }
+
+      const loggedInUserEmail = user.email;
+      const { data: usersData, error: usersError } = await supabase
+        .from("users")
+        .select("id")
+        .eq("email", loggedInUserEmail)
+        .single();
+
+      if (usersError || !usersData) {
+        console.error(
+          "Error fetching user id from users table:",
+          usersError?.message
+        );
+        return;
+      }
+
+      const userId = usersData.id;
+      const { data: userTeamData, error: userTeamError } = await supabase
+        .from("team_members")
+        .select("team_id")
+        .eq("user_id", userId)
+        .single();
+
+      if (userTeamError) {
+        console.error("Error fetching user's team:", userTeamError.message);
+      } else if (userTeamData) {
+        setUserTeam(userTeamData.team_id);
+      }
+
+      const { data: teamsData, error: teamsError } = await supabase
         .from("teams")
-        .select(
-          `
-          id,
-          teamname,
-          team_members(
-            user_id,
-            users(
-              email
-            )
-          )
-          `
-        )
+        .select(`id, teamname, team_members(user_id, users(email))`)
         .order("id", { ascending: true });
-      if (error) {
-        console.error("Error fetching teams:", error.message);
+
+      if (teamsError) {
+        console.error("Error fetching teams:", teamsError.message);
       } else {
-        // Map over the teams to format the data
-        const formattedTeams = teamsData.map((team) => ({
-          ...team,
-          members: team.team_members
-            .map((member) => member.users.email)
-            .join(", "),
-        }));
-        setTeams(formattedTeams);
+        setTeams(teamsData);
       }
     };
-    fetchTeams();
+    fetchUserTeamAndTeams();
   }, []);
 
-  const handleTeamSelection = (event) => {
-    const selectedTeamName = event.target.value;
-    setSelectedTeam(selectedTeamName); // Updates the selected team name
-    const selectedTeamObj = teams.find(
-      (team) => team.teamname === selectedTeamName
-    );
+  const handleLeaveTeam = async () => {
+    if (userTeam) {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      const loggedInUserEmail = user.email;
 
-    if (selectedTeamObj) {
-      // Update the teamMembers state with the emails of the selected team's members
-      setTeamMembers(
-        selectedTeamObj.team_members.map((member) => member.users.email)
-      );
-    } else {
-      setTeamMembers([]); // Clear if no team is selected
+      const { data: usersData, error: usersError } = await supabase
+        .from("users")
+        .select("id")
+        .eq("email", loggedInUserEmail)
+        .single();
+
+      if (usersError || !usersData) {
+        console.error(
+          "Error fetching user id from users table:",
+          usersError?.message
+        );
+        return;
+      }
+
+      const userId = usersData.id;
+      const { error } = await supabase
+        .from("team_members")
+        .delete()
+        .match({ user_id: userId, team_id: userTeam });
+      if (error) {
+        console.error("Error leaving team:", error.message);
+      } else {
+        setUserTeam(null);
+        alert("You have left the team.");
+      }
     }
   };
 
-  const handleMemberSelection = (event) => {
-    setSelectedMember(event.target.value); // Updates the selected member
+  const handleRequestToJoinTeam = async (teamId) => {
+    if (requestMessage) {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      const loggedInUserEmail = user.email;
+
+      const { data: usersData, error: usersError } = await supabase
+        .from("users")
+        .select("id")
+        .eq("email", loggedInUserEmail)
+        .single();
+
+      if (usersError || !usersData) {
+        console.error(
+          "Error fetching user id from users table:",
+          usersError?.message
+        );
+        return;
+      }
+
+      const userId = usersData.id;
+      const { error } = await supabase.from("requests").insert([
+        {
+          user_id: userId,
+          current_team: userTeam,
+          new_team: teamId,
+          message: requestMessage,
+          status: "pending",
+        },
+      ]);
+      if (error) {
+        console.error("Error sending request:", error.message);
+      } else {
+        alert("Request sent to the professor.");
+        setRequestTeamId(null);
+        setRequestMessage("");
+      }
+    } else {
+      alert("Please enter a message explaining your request.");
+    }
   };
 
   return (
-    <div className="show-teams-container">
-      <h2>Teams</h2>
-      {teams.length === 0 ? (
-        <p>No teams found.</p>
-      ) : (
-        <div>
-          {teams.map((team) => (
-            <div key={team.id} className="team-item">
-              <h3>{team.teamname}</h3>
-              <p>Members: {team.members}</p>
-            </div>
-          ))}
-          {/* <div className="team-selection-container">
-            <button
-              onClick={() => alert(`You are in team: ${selectedTeam}`)}
-              className="team-button"
-            >
-              Which team are you in?
-            </button>
-            <select value={selectedTeam} onChange={handleTeamSelection}>
-              <option value="">Select a team</option>
-              {teams.map((team) => (
-                <option key={team.id} value={team.teamname}>
-                  {team.teamname}
-                </option>
-              ))}
-            </select>
-          </div> */}
-          {/* <div className="member-selection-container">
-            <button
-              onClick={() =>
-                alert(`You selected to evaluate: ${selectedMember}`)
-              }
-              className="team-button"
-            >
-              Which one of your team members would you like to evaluate?
-            </button>
-            <select value={selectedMember} onChange={handleMemberSelection}>
-              <option value="">Select a team member</option>
-              {teamMembers.map((member, index) => (
-                <option key={index} value={member}>
-                  {member}
-                </option>
-              ))}
-            </select>
-          </div>  */}
-          {/* Link to the Assessment page with the Button */}
-          <div className="evaluation-link-container">
-            <Link
-            to = "/Assessment"
-              // to={{
-              //   pathname: "/Assessment",
-              //   // state: { member: selectedMember,
-              //   //   team: selectedTeam
-              //   //  },
-              // }}
-            >
-          {/* <button disabled={!selectedMember}>Evaluate Now</button> */}
-          <button >Evaluate Now</button>
-            </Link>
+    <div className="container">
+      <header className="header1">
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          alt="Logo"
+          className="logo"
+        />
+        <h2>
+          Sharky <br /> Peer Assessment
+        </h2>
+      </header>
+
+      <div className="show-teams-container">
+        <h2>All Teams</h2>
+        {teams.length === 0 ? (
+          <p>No teams found.</p>
+        ) : (
+          <div>
+            {teams.map((team) => (
+              <div key={team.id} className="team-item">
+                <h3>{team.teamname}</h3>
+                <p>Members:</p>
+                <ul className="members-list">
+                  {team.team_members.map((member) => (
+                    <li key={member.user_id}>{member.users.email}</li>
+                  ))}
+                </ul>
+                {userTeam === team.id ? (
+                  <button onClick={handleLeaveTeam}>Leave Team</button>
+                ) : (
+                  <>
+                    <button onClick={() => setRequestTeamId(team.id)}>
+                      Request to Join
+                    </button>
+                    {requestTeamId === team.id && (
+                      <div className="request-message-box">
+                        <textarea
+                          placeholder="Explain why you want to join this team..."
+                          value={requestMessage}
+                          onChange={(e) => setRequestMessage(e.target.value)}
+                        />
+                        <button
+                          onClick={() => handleRequestToJoinTeam(team.id)}
+                        >
+                          Send Request
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
