@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Import Link
 
 const Homepage = () => {
   return (
-    <div className="container">
+    <div className="container homepage-container">
       <header className="header1">
         <img
           src={`${process.env.PUBLIC_URL}/logo.png`}

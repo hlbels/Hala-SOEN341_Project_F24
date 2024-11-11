@@ -94,6 +94,7 @@ const LogIn = ({ setToken }) => {
       </nav>
 
       <div className="login-box">
+        <h2>Login</h2>
         <div className="switch-container">
           <button
             type="button"
@@ -115,7 +116,6 @@ const LogIn = ({ setToken }) => {
           </button>
         </div>
 
-        <h2>Login</h2>
         <form id="loginform" onSubmit={handleSubmit} className="form-container">
           <div className="user-box">
             <input

@@ -40,6 +40,24 @@ const ResetPW = () => {
         </h2>
       </header>
 
+      {/* Sidebar for Login, Sign Up, Contact Us, and Welcome Page */}
+      <nav className="sidebar">
+        <div className="menu-buttons">
+          <button className="btn" onClick={() => navigate("/login")}>
+            Login
+          </button>
+          <button className="btn" onClick={() => navigate("/signup")}>
+            Sign Up
+          </button>
+          <button className="btn" onClick={() => navigate("/contact-us")}>
+            Contact Us
+          </button>
+          <button className="btn" onClick={() => navigate("/")}>
+            About Sharky
+          </button>
+        </div>
+      </nav>
+
       <div className="login-box">
         <h2>Create New Password</h2>
         <form
