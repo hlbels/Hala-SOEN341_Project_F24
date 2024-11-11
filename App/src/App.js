@@ -8,7 +8,7 @@ import {
   ResetPW,
   TeamManagement,
   ShowTeams,
-  Confirmpage, 
+  Confirmpage,
   Logout,
   Assessment,
   HandleTeams,
@@ -16,10 +16,10 @@ import {
   ConceptualAssessment,
   PracticalAssessment,
   WorkEthicAssessment,
+  AssessmentResults,
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
-
 
 const App = () => {
   const [token, setToken] = useState(false);
@@ -46,10 +46,9 @@ const App = () => {
       <Route path="/reset-password" element={<ResetPW />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
-      <Route path="/conceptualassessment" element={<ConceptualAssessment />} /> 
+      <Route path="/conceptualassessment" element={<ConceptualAssessment />} />
       <Route path="/practicalassessment" element={<PracticalAssessment />} />
       <Route path="/workethicassessment" element={<WorkEthicAssessment />} />
-    
 
       {/* Protected Routes */}
 
@@ -78,56 +77,54 @@ const App = () => {
         path="/Show-teams"
         element={
           <ProtectedRoute token={token}>
-           
-            <ShowTeams/>
+            <ShowTeams />
           </ProtectedRoute>
         }
       />
-       <Route
+      <Route
         path="/Assessment"
         element={
           <ProtectedRoute token={token}>
             <Assessment />
           </ProtectedRoute>
         }
-      /> 
+      />
 
-        <Route
+      <Route
         path="/ConceptualAssessment"
         element={
           <ProtectedRoute token={token}>
             <ConceptualAssessment />
           </ProtectedRoute>
         }
-      /> 
+      />
 
-        <Route
+      <Route
         path="/PracticalAssessment"
         element={
           <ProtectedRoute token={token}>
             <PracticalAssessment />
           </ProtectedRoute>
         }
-      /> 
+      />
 
-        <Route
+      <Route
         path="/WorkEthicAssessment"
         element={
           <ProtectedRoute token={token}>
             <WorkEthicAssessment />
           </ProtectedRoute>
         }
-      /> 
+      />
 
-
-      <Route 
-      path="/Confirmpage"
-      element={
-        <ProtectedRoute token={token}>
-          <Confirmpage/>
-        </ProtectedRoute>
-      }
-      /> 
+      <Route
+        path="/Confirmpage"
+        element={
+          <ProtectedRoute token={token}>
+            <Confirmpage />
+          </ProtectedRoute>
+        }
+      />
 
       {/* Instructor Show/Handle Teams */}
       <Route
@@ -135,6 +132,16 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <HandleTeams />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Instructor Assessment results */}
+      <Route
+        path="/assessment-results"
+        element={
+          <ProtectedRoute token={token}>
+            <AssessmentResults />
           </ProtectedRoute>
         }
       />

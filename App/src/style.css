@@ -1133,3 +1133,131 @@ body::-webkit-scrollbar {
   text-align: center;
   margin-top: 2rem;
 }
+
+/* Results Selection Section */
+.results-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+/* Dropdown Styling */
+.results-selection label {
+  font-size: 1.1rem;
+  color: #f5f5f5;
+}
+
+.results-selection select {
+  padding: 10px;
+  font-size: 1rem;
+  color: #333;
+  background: #f9f9f9;
+  border: 1px solid #2ec4b6;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.results-selection select:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #2ec4b6;
+}
+
+/* Message when no assessed students are found */
+.no-assessed-message {
+  font-size: 1.1rem;
+  color: #e63946;
+  margin-top: 10px;
+}
+
+/* Results Table Container */
+.results-container {
+  margin-top: 30px;
+  color: #f5f5f5;
+}
+
+/* Results Tables */
+.results-table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  background: #3a3d5c;
+  border-radius: 8px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.results-table h3 {
+  font-size: 1.4rem;
+  color: #2ec4b6;
+  text-align: center;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+/* Table Header Styling */
+.results-table thead th {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #2b2d42;
+  color: #f5f5f5;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Table Row and Cell Styling */
+.results-table tbody tr {
+  transition: background-color 0.3s;
+}
+
+.results-table tbody tr:hover {
+  background-color: #2ec4b6;
+}
+
+.results-table tbody td {
+  padding: 12px;
+  font-size: 0.9rem;
+  border-top: 1px solid #2b2d42;
+  color: #f5f5f5;
+}
+
+/* Loading State */
+.loading-message {
+  font-size: 1.5rem;
+  color: #2ec4b6;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Additional Message Styling */
+.no-data-message {
+  font-size: 1.1rem;
+  color: #e63946;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.export-button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #f5f5f5;
+  background-color: #2ec4b6;
+  border: none;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* removes underline for CSV link */
+  display: inline-block;
+}
+
+.export-button:hover {
+  background-color: #3a3d5c;
+  transform: scale(1.05);
+}
