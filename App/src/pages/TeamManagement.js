@@ -223,7 +223,7 @@ const TeamManagement = () => {
         <>
           {/* Moved Team Management title to the top, right after the main title */}
           <div className="description">
-            <h2 style={{ color: "#6c3483" }}>Team Management</h2>
+            <h2>Team Management</h2>
           </div>
           <div className="teamform">
             <h3>Create a Team</h3>

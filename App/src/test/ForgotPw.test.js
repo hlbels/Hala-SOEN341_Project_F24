@@ -3,6 +3,7 @@ import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import ForgotPw from "../pages/ForgotPw"; // linking ForgotPw.js to the test file
 import '@testing-library/jest-dom';
 import { supabase } from "../client"; // Import supabase from client file
+import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter from react-router-dom
 
 // Mock the Supabase client to control the behavior of resetPasswordForEmail
 jest.mock("../client", () => ({
@@ -15,7 +16,11 @@ jest.mock("../client", () => ({
 
 describe("ForgotPw Component Simple Tests", () => {
     it("renders the forgot password form", () => {
-        render(<ForgotPw />);
+        render(
+            <MemoryRouter>
+                <ForgotPw />
+            </MemoryRouter>
+        );
         const headingElement = screen.getByText(/Forgot Password/i);
         expect(headingElement).toBeInTheDocument();
     });
@@ -33,7 +38,11 @@ describe("ForgotPw Component Advanced Tests", () => {
 
     // Test that the Forgot Password form renders correctly
     test("renders the Forgot Password form", () => {
-        render(<ForgotPw />);
+        render(
+            <MemoryRouter>
+                <ForgotPw />
+            </MemoryRouter>
+        );
         expect(screen.getByText("Forgot Password")).toBeInTheDocument();
         expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
         expect(screen.getByRole("button", { name: /submit/i })).toBeInTheDocument();
@@ -41,7 +50,11 @@ describe("ForgotPw Component Advanced Tests", () => {
 
     // Test that an invalid email input displays an error message
     test("displays error for invalid email", async () => {
-        render(<ForgotPw />);
+        render(
+            <MemoryRouter>
+                <ForgotPw />
+            </MemoryRouter>
+        );
         const emailInput = screen.getByPlaceholderText("Email");
         const submitButton = screen.getByRole("button", { name: /submit/i });
 
@@ -56,7 +69,11 @@ describe("ForgotPw Component Advanced Tests", () => {
 
     // Test that a valid email input calls the resetPasswordForEmail function
     test("calls resetPasswordForEmail with valid email", async () => {
-        render(<ForgotPw />);
+        render(
+            <MemoryRouter>
+                <ForgotPw />
+            </MemoryRouter>
+        );
         const emailInput = screen.getByPlaceholderText("Email");
         const submitButton = screen.getByRole("button", { name: /submit/i });
 
