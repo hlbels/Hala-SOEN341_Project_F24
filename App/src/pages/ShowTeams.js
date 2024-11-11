@@ -10,13 +10,16 @@ const ShowTeams = () => {
 
   useEffect(() => {
     const fetchUserTeamAndTeams = async () => {
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser();
+      // Ensure getUser returns a response structure with `data`
+      const userResponse = await supabase.auth.getUser();
+      if (!userResponse || !userResponse.data) {
+        console.error("Error fetching user: User data is undefined");
+        return;
+      }
 
-      if (userError || !user) {
-        console.error("Error fetching user:", userError?.message);
+      const { user } = userResponse.data;
+      if (!user) {
+        console.error("Error: User not found in userResponse");
         return;
       }
 
@@ -59,15 +62,14 @@ const ShowTeams = () => {
         setTeams(teamsData);
       }
     };
+
     fetchUserTeamAndTeams();
   }, []);
 
   const handleLeaveTeam = async () => {
     if (userTeam) {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      const loggedInUserEmail = user.email;
+      const { data: userData } = await supabase.auth.getUser();
+      const loggedInUserEmail = userData?.user?.email;
 
       const { data: usersData, error: usersError } = await supabase
         .from("users")
@@ -99,10 +101,8 @@ const ShowTeams = () => {
 
   const handleRequestToJoinTeam = async (teamId) => {
     if (requestMessage) {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      const loggedInUserEmail = user.email;
+      const { data: userData } = await supabase.auth.getUser();
+      const loggedInUserEmail = userData?.user?.email;
 
       const { data: usersData, error: usersError } = await supabase
         .from("users")
