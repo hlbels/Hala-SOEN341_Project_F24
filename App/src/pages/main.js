@@ -14,6 +14,7 @@ import Confirmpage from "./Confirmpage";
 import ConceptualAssessment from "./ConceptualAssessment";
 import PracticalAssessment from "./PracticalAssessment";
 import WorkEthicAssessment from "./WorkEthicAssessment";
+import AssessmentResults from "./AssessmentResults";
 
 export {
   LogIn,
@@ -32,4 +33,5 @@ export {
   ConceptualAssessment,
   PracticalAssessment,
   WorkEthicAssessment,
+  AssessmentResults,
 };
