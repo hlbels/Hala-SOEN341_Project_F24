@@ -27,10 +27,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd Sharky
-          npm install
+          cd App
+          npm install --legacy-peer-deps
 
       - name: Run tests
         run: |
-          cd Sharky
+          cd App
           npm test -- --watchAll=false --passWithNoTests
