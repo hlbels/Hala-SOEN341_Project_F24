@@ -1,0 +1,26 @@
+# Meeting Minutes
+
+## Date: November 7, 2024
+
+### Attendees:
+- Hala Belamri
+- New TA (assessing individual work)
+
+### Agenda:
+1. Demo of current project progress
+2. Feedback on issue naming and project adjustments
+
+### Discussion:
+- **Project Demo**: Showcased the progress of the project, including the new and old GitHub repositories.
+- **Feedback from TA**:
+  - Issue Naming: TA suggested naming issues for user stories as "US" and acceptance tests as "AT" to align with Agile methodology.
+  - If an issue is not a user story, it should be labeled accordingly with an appropriate identifier.
+- **Project Adjustments**:
+  - Agreed to add several new features and adjustments:
+    - Displaying assessment results for instructors.
+    - Potentially adding functionalities to allow instructors to change questions and dimensions if time permits.
+
+### Action Items:
+- Rename issues and tests in the repository to match the suggested naming conventions.
+- Plan additional features and adjustments to be implemented in upcoming sprints.
+- Submit new links for Sprint3.
