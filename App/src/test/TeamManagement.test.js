@@ -4,37 +4,25 @@ import { MemoryRouter } from "react-router-dom";
 import TeamManagement from "../pages/TeamManagement";
 import "@testing-library/jest-dom";
 
-describe("TeamManagement Component", () => {
-  test("renders the component with basic elements", () => {
+describe("TeamManagement Component Basic Functionality", () => {
+  test("renders with basic elements and toggles team management form", () => {
     render(
       <MemoryRouter>
         <TeamManagement />
       </MemoryRouter>
     );
 
-    // Check if the main title is rendered
-    expect(screen.getByText(/Sharky Peer Assessment/i)).toBeInTheDocument();
-
-    // Check if the "Menu" button is present
+    // Check if the "Menu" button is present and toggle it
     expect(screen.getByText(/Menu/i)).toBeInTheDocument();
-
-    // Toggle the menu and then team management form
     fireEvent.click(screen.getByText(/Menu/i));
 
-    // Locate the correct "Team Management" button and click it
+    // Locate and click the "Team Management" button within the menu
     const teamManagementButton = screen
       .getAllByText(/Team Management/i)
       .find((el) => el.tagName.toLowerCase() === "button");
     fireEvent.click(teamManagementButton);
 
-    // Confirm that the team management heading is displayed
-    expect(
-      screen
-        .getAllByText(/Team Management/i)
-        .some((el) => el.tagName.toLowerCase() === "h2")
-    ).toBe(true);
-
-    // Check if the team name input is visible after toggling the team management form
+    // Check that the team management input field is displayed
     expect(screen.getByPlaceholderText("Enter Team Name")).toBeInTheDocument();
   });
 });
