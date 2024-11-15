@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { Link } from "react-router-dom";
 import Papa from "papaparse";
@@ -8,8 +8,23 @@ const TeamManagement = () => {
   const [teamName, setTeamName] = useState("");
   const [students, setStudents] = useState([]);
   const [csvFile, setCsvFile] = useState(null);
-  const [menuVisible, setMenuVisible] = useState(false); // State to control menu visibility
-  const [teamFormVisible, setTeamFormVisible] = useState(false); // State for showing/hiding team creation sections
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [teamFormVisible, setTeamFormVisible] = useState(false);
+  const [instructorEmail, setInstructorEmail] = useState(""); // State for storing instructor email
+
+  useEffect(() => {
+    // Fetch instructor's email on component mount
+    const fetchInstructorData = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        console.error("Error fetching instructor data:", error.message);
+        return;
+      }
+      setInstructorEmail(data?.user?.email || ""); // Set instructor's email
+    };
+
+    fetchInstructorData();
+  }, []);
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -184,57 +199,67 @@ const TeamManagement = () => {
           className="logo"
         />
         <h2>
-          Sharky <br /> Peer Assessment
+        PInsights <br /> Peer Assessment
         </h2>
       </header>
 
-      {/* Menu Button pushed further down */}
-      <div className="menu-buttons-top">
-        <button className="btn" onClick={toggleMenu}>
+      <div className="instructor-info">
+        <p>
+          Welcome, Instructor! Here you can manage teams, upload rosters, and
+          view assessment results.
+        </p>
+        <p>
+          <strong>Email:</strong> {instructorEmail}
+        </p>
+      </div>
+
+      <div className="menu-container">
+        <button className="menu-toggle-button" onClick={toggleMenu}>
           {menuVisible ? "Hide Menu" : "Menu"}
         </button>
         {menuVisible && (
-          <nav className="menu-buttons">
+          <nav className="menu-links">
             <button className="btn" onClick={toggleTeamManagement}>
               Team Management
             </button>
-            <Link to="/">
-              <button className="btn">Welcome Page</button>
-            </Link>
             <Link to="/assessment-results">
               <button className="btn">Assessment Results</button>
+            </Link>
+            <Link to="/analysis">
+              <button className="btn">Analyse Results</button>
             </Link>
             <Link to="/handle-teams">
               <button className="btn">Show Teams</button>
             </Link>
-
+            <Link to="/requests">
+              <button className="btn">View Requests</button>
+            </Link>
             <Link to="/contact-us">
               <button className="btn">Contact Us</button>
             </Link>
             <Link to="/Logout">
               <button className="btn">Logout</button>
             </Link>
+            <Link to="/">
+              <button className="btn">Welcome Page</button>
+            </Link>
           </nav>
         )}
       </div>
 
-      {/* Create Team and Upload CSV Sections */}
       {teamFormVisible && (
-        <>
-          {/* Moved Team Management title to the top, right after the main title */}
-          <div className="description">
-            <h2>Team Management</h2>
-          </div>
-          <div className="teamform">
-            <h3>Create a Team</h3>
-            <div className="toolbar">
-              <label htmlFor="student-count-select">
-                Select number of students:
-              </label>
+        <div className="team-management-section">
+          <h2 className="section-title">Team Management</h2>
+
+          <div className="team-creation-form">
+            <h3 className="form-title">Create a Team</h3>
+            <div className="form-controls">
+              <label htmlFor="student-count-select">Number of Students:</label>
               <select
                 id="student-count-select"
                 onChange={handleStudentCountChange}
                 value={studentCount}
+                className="student-count-select"
               >
                 {Array.from({ length: 11 }, (_, i) => (
                   <option key={i} value={i}>
@@ -243,12 +268,13 @@ const TeamManagement = () => {
                 ))}
               </select>
               <button
-                className="btn"
+                className="btn generate-inputs"
                 onClick={() => setStudents(Array(studentCount).fill(""))}
               >
                 Generate Inputs
               </button>
             </div>
+
             {students.map((name, index) => (
               <div key={index} className="student-input">
                 <input
@@ -262,7 +288,8 @@ const TeamManagement = () => {
                 />
               </div>
             ))}
-            <div className="student-input">
+
+            <div className="team-name-input">
               <label>Team Name:</label>
               <input
                 type="text"
@@ -272,15 +299,16 @@ const TeamManagement = () => {
                 className="input-text"
               />
             </div>
-            <div className="button-container">
-              <button className="btn" onClick={handleSubmit}>
-                Submit
+
+            <div className="submit-button-container">
+              <button className="btn submit-team-button" onClick={handleSubmit}>
+                Create Team
               </button>
             </div>
           </div>
 
-          <div className="csv-upload">
-            <h3>Upload CSV to Create Teams</h3>
+          <div className="csv-upload-section">
+            <h3 className="form-title">Upload CSV to Create Teams</h3>
             <input
               type="file"
               accept=".csv"
@@ -288,11 +316,11 @@ const TeamManagement = () => {
               id="csv-upload-input"
               className="input-file"
             />
-            <button className="btn" onClick={handleCsvSubmit}>
+            <button className="btn upload-csv-button" onClick={handleCsvSubmit}>
               Upload CSV
             </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

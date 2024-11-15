@@ -71,7 +71,7 @@ const LogIn = ({ setToken }) => {
           className="logo"
         />
         <h2>
-          Sharky <br /> Peer Assessment
+          PINSIGHTS <br /> Peer Assessment
         </h2>
       </header>
 

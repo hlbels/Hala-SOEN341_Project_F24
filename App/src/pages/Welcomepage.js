@@ -13,7 +13,7 @@ const Welcomepage = () => {
           className="logo"
         />
         <h2 className="project-title">
-          Sharky <br /> Peer Assessment
+          PInsights <br /> Peer Assessment
         </h2>
       </header>
 

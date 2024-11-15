@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../client";
 
 const HandleTeams = () => {
@@ -7,6 +8,7 @@ const HandleTeams = () => {
   const [loading, setLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState(null); // Track which option is selected
   const [selectedUser, setSelectedUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTeamsAndMembers = async () => {
@@ -126,25 +128,58 @@ const HandleTeams = () => {
           alt="Logo"
           className="logo"
         />
-        <h2>Sharky Peer Assessment</h2>
+        <h2>
+          PInsights <br /> Peer Assessment
+        </h2>
       </header>
-      <div className="options-container">
-        <h2>Team Management Options</h2>
-        <div className="options">
+
+      {/* Sidebar for Login, Sign Up, Contact Us, and Welcome Page */}
+      <nav className="sidebar">
+        <div className="menu-buttons">
+          <button className="btn" onClick={() => navigate("/team-management")}>
+            Team Management
+          </button>
+          <button className="btn" onClick={() => navigate("/handle-teams")}>
+            Show teams
+          </button>
           <button
-            className="option-btn"
+            className="btn"
+            onClick={() => navigate("/assessment-results")}
+          >
+            Assessment Results
+          </button>
+          <button className="btn" onClick={() => navigate("/analysis")}>
+            Analyze Results
+          </button>
+          <button className="btn" onClick={() => navigate("/requests")}>
+            View Requests
+          </button>
+          <button className="btn" onClick={() => navigate("/")}>
+            Logout
+          </button>
+          <button className="btn" onClick={() => navigate("/contact-us")}>
+            Contact Us
+          </button>
+        </div>
+      </nav>
+
+      <div className="options-container">
+        <h2 className="options-title">Team Management Options</h2>
+        <div className="options-buttons">
+          <button
+            className="option-button"
             onClick={() => toggleOption("displayTeams")}
           >
             Display Teams
           </button>
           <button
-            className="option-btn"
+            className="option-button"
             onClick={() => toggleOption("modifyTeams")}
           >
             Modify Teams
           </button>
           <button
-            className="option-btn"
+            className="option-button"
             onClick={() => toggleOption("addMember")}
           >
             Add Member to Teams
@@ -153,21 +188,23 @@ const HandleTeams = () => {
 
         {/* Display Teams */}
         {selectedOption === "displayTeams" && (
-          <div className="teams-container">
-            <h3>Teams</h3>
+          <div className="teams-display">
+            <h3 className="section-title">Teams</h3>
             {teams.length === 0 ? (
-              <p>No teams found.</p>
+              <p className="no-teams-message">No teams found.</p>
             ) : (
               teams.map((team) => (
-                <div key={team.id} className="team-item">
-                  <h4>{team.teamname}</h4>
-                  <p>Members:</p>
-                  <ul>
+                <div key={team.id} className="team-card">
+                  <h4 className="team-name">{team.teamname}</h4>
+                  <p className="members-title">Members:</p>
+                  <ul className="members-list">
                     {team.members.length === 0 ? (
-                      <li>No members found.</li>
+                      <li className="no-members-message">No members found.</li>
                     ) : (
                       team.members.map((member) => (
-                        <li key={member.id}>{member.email}</li>
+                        <li key={member.id} className="member-item">
+                          {member.email}
+                        </li>
                       ))
                     )}
                   </ul>
@@ -179,23 +216,23 @@ const HandleTeams = () => {
 
         {/* Modify Teams */}
         {selectedOption === "modifyTeams" && (
-          <div className="modify-teams-container">
-            <h3>Modify Teams</h3>
+          <div className="modify-teams">
+            <h3 className="section-title">Modify Teams</h3>
             {teams.length === 0 ? (
-              <p>No teams found.</p>
+              <p className="no-teams-message">No teams found.</p>
             ) : (
               teams.map((team) => (
-                <div key={team.id} className="team-item">
-                  <h4>{team.teamname}</h4>
-                  <ul>
+                <div key={team.id} className="team-card">
+                  <h4 className="team-name">{team.teamname}</h4>
+                  <ul className="members-list">
                     {team.members.length === 0 ? (
-                      <li>No members found.</li>
+                      <li className="no-members-message">No members found.</li>
                     ) : (
                       team.members.map((member) => (
-                        <li key={member.id}>
-                          {member.email}{" "}
+                        <li key={member.id} className="member-item">
+                          {member.email}
                           <button
-                            className="btn-remove"
+                            className="remove-button"
                             onClick={() =>
                               handleRemoveMember(team.id, member.id)
                             }
@@ -203,6 +240,7 @@ const HandleTeams = () => {
                             Remove
                           </button>
                           <select
+                            className="team-select"
                             onChange={(e) =>
                               handleChangeTeam(e.target.value, member.id)
                             }
@@ -228,12 +266,13 @@ const HandleTeams = () => {
 
         {/* Add Members */}
         {selectedOption === "addMember" && (
-          <div className="add-member-container">
-            <h3>Add User to Team</h3>
+          <div className="add-member-section">
+            <h3 className="section-title">Add User to Team</h3>
             {teams.map((team) => (
-              <div key={team.id} className="team-item">
-                <h4>{team.teamname}</h4>
+              <div key={team.id} className="team-card">
+                <h4 className="team-name">{team.teamname}</h4>
                 <select
+                  className="user-select"
                   onChange={(e) =>
                     setSelectedUser(
                       users.find((user) => user.id === parseInt(e.target.value))
@@ -252,7 +291,7 @@ const HandleTeams = () => {
                     ))}
                 </select>
                 <button
-                  className="btn"
+                  className="add-member-button"
                   onClick={() => handleAddMemberToTeam(team.id)}
                 >
                   Add Member
@@ -267,4 +306,3 @@ const HandleTeams = () => {
 };
 
 export default HandleTeams;
-

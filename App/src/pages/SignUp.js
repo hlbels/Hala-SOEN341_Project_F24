@@ -67,7 +67,7 @@ const SignUp = () => {
           className="logo"
         />
         <h2>
-          Sharky <br /> Peer Assessment
+          PInsights <br /> Peer Assessment
         </h2>
       </header>
 

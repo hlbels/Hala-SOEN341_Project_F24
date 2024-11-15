@@ -551,713 +551,1126 @@ body::-webkit-scrollbar {
   }
 }
 
-/* ShowTeams Page Specific Styling */
-.show-teams-container {
+/* ShowTeams Style */
+/* Main Container Styling */
+.teamsContainer {
+  width: 100%;
   max-width: 800px;
-  margin: auto;
-  padding: 2rem;
-  background: rgba(58, 61, 92, 0.9);
-  border-radius: 12px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+  margin-top: 20px;
+  background: rgba(43, 45, 66, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
   color: #f5f5f5;
+  backdrop-filter: blur(6px);
 }
 
-.show-teams-container h2 {
+/* Header Styling */
+.header1 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgb(43, 45, 66);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header1 img.logo {
+  width: 50px;
+  height: auto;
+  margin-right: 8px;
+}
+
+.header1 h2 {
+  color: #f5f5f5;
+  font-weight: 700;
+  line-height: 1.1;
+  font-size: 1.4rem;
+}
+
+/* Title for Teams Section */
+.teamsContainer h2 {
+  color: #2ec4b6;
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 1.5rem;
-  color: #2ec4b6;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Team List and Item Styling */
+.teamList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.teamItem {
+  background: rgba(58, 61, 92, 0.85);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teamItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.teamItem h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
   font-weight: bold;
-}
-
-.team-item {
-  background-color: #3a3d5c;
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.team-item h3 {
-  font-size: 1.4rem;
   color: #2ec4b6;
-  margin-bottom: 0.5rem;
 }
 
-.team-item p {
+/* Member List Styling */
+.membersList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 15px; /* Adds spacing below the list */
+  color: #d9d9d9;
   font-size: 1rem;
-  line-height: 1.6;
-  color: #f5f5f5;
-  margin-bottom: 0.5rem;
-}
-
-.members-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding-left: 0;
-  list-style-type: none;
-  margin: 0;
 }
 
-.members-list li {
-  background-color: #2b2d42;
-  padding: 8px 12px;
+.membersList li {
+  padding: 5px 12px;
+  background: rgba(46, 196, 182, 0.15);
   border-radius: 5px;
-  color: #f5f5f5;
-  font-size: 0.9rem;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-  margin-bottom: 4px;
 }
 
-.team-item button {
-  padding: 10px 20px;
-  background-color: #2ec4b6;
-  border: none;
-  border-radius: 8px;
-  color: #f5f5f5;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.3s;
-  cursor: pointer;
-  margin-top: 1rem; /* Adds space above the button */
-}
-
-.team-item button:hover {
-  background-color: #3a3d5c;
-  transform: translateY(-3px);
-}
-
-.request-message-box {
-  margin-top: 1rem;
+/* Request Message Box Styling */
+.requestMessageBox {
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.request-message-box textarea {
-  width: 100%;
-  padding: 10px;
-  background-color: #2b2d42;
-  color: #f5f5f5;
-  border: 1px solid #2ec4b6;
-  border-radius: 8px;
-  resize: none;
-}
-
-.request-message-box button {
-  align-self: flex-start;
-  background-color: #2ec4b6;
-  color: #f5f5f5;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.request-message-box button:hover {
-  background-color: #3a3d5c;
-  transform: scale(1.05);
-}
-
-/* Logout box specific styling */
-.Logout-box {
-  background: rgba(58, 61, 92, 0.9);
-  padding: 2.5rem 3rem;
-  margin-top: 5rem; /* Ensures it's placed below the fixed header */
-  border-radius: 10px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
-  text-align: center;
-  width: 100%;
-  max-width: 500px;
-}
-
-.Logout-box h1 {
-  font-size: 2rem;
-  color: #f5f5f5;
-  margin-bottom: 1.5rem;
-}
-
-.Logout-box p {
-  font-size: 1.2rem;
-  color: #f5f5f5;
-  margin-bottom: 2rem;
-}
-
-.Logout-box button {
-  padding: 12px 25px;
-  font-size: 1rem;
-  color: #f5f5f5;
-  background-color: #2ec4b6;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.Logout-box button:hover {
-  background-color: #3a3d5c;
-  transform: scale(1.05);
-}
-
-/* Team Management Page Layout */
-.team-management-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 20px;
-  max-width: 960px;
-  margin: auto;
-  color: #333;
-  background: #f0f4f8; /* Soft light background for a modern feel */
-}
-
-/* Menu button styling */
-.menu-buttons-top {
-  margin-top: 3rem;
-  text-align: center;
-}
-
-.menu-buttons-top .btn {
-  padding: 12px 22px;
-  background-color: #2ec4b6;
-  border: none;
-  border-radius: 30px; /* More rounded, modern button style */
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-
-.menu-buttons-top .btn:hover {
-  background-color: #1d9a8b;
-  transform: scale(1.05);
-}
-
-/* Team Management Title Styling */
-.description h2 {
-  font-size: 2.5rem;
-  color: #6c3483;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 2rem;
-  text-align: center;
-  background: linear-gradient(135deg, #2ec4b6, #6c3483); /* Gradient effect */
-  -webkit-background-clip: text;
-  color: transparent;
-  text-transform: uppercase;
-}
-
-/* Team Form Section Styling */
-.teamform {
-  background: #ffffff;
-  padding: 2rem 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 650px; /* Adjusted width for better proportionality */
-  margin: auto;
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Team Form Title */
-.teamform h3 {
-  font-size: 1.8rem;
-  color: #333;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  border-bottom: 2px solid #2ec4b6;
-  padding-bottom: 0.5rem;
-}
-
-/* Input Fields */
-.toolbar {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.toolbar label {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 0.5rem;
-}
-
-.toolbar select {
+.requestMessageBox textarea {
   padding: 12px;
   font-size: 1rem;
-  color: #555;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: background 0.3s ease, border 0.3s ease;
-  box-sizing: border-box;
+  color: #f5f5f5;
+  background: #2b2d42;
+  border: 1px solid rgba(46, 196, 182, 0.6);
+  border-radius: 10px;
+  resize: none;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-.toolbar select:focus {
+.requestMessageBox textarea:focus {
   outline: none;
-  background: #fff;
+  background: #3a3d5c;
   border-color: #2ec4b6;
+}
+
+/* General Button Styling */
+.button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2ec4b6, #218a92);
+  border: none;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-top: 10px; /* Adds spacing above the button */
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #218a92, #2ec4b6);
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific Button Styles */
+.leaveButton {
+  background: linear-gradient(135deg, #e63946, #b8353a);
+}
+
+.leaveButton:hover {
+  background: linear-gradient(135deg, #b8353a, #e63946);
+}
+
+.requestButton {
+  background: linear-gradient(135deg, #2ec4b6, #218a92);
+}
+
+.requestButton:hover {
+  background: linear-gradient(135deg, #218a92, #2ec4b6);
+}
+
+.sendRequestButton {
+  background: linear-gradient(135deg, #2ec4b6, #218a92);
+}
+
+.sendRequestButton:hover {
+  background: linear-gradient(135deg, #218a92, #2ec4b6);
+}
+
+/* Assessment Page Styling */
+/* Assessment Form Container */
+.assessment-form-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(43, 45, 66, 0.95);
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  color: #f5f5f5;
+  backdrop-filter: blur(6px);
+}
+
+/* Form Title */
+.assessment-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2ec4b6;
+  margin-bottom: 20px;
+}
+
+/* Section Titles */
+.member-select-title,
+.assessment-dimension-title {
+  font-size: 1.4rem;
+  color: #2ec4b6;
+  margin: 20px 0 10px;
+  font-weight: bold;
+}
+
+/* Form Labels */
+.form-label {
+  display: block;
+  font-size: 1rem;
+  color: #d9d9d9;
+  margin-bottom: 8px;
+}
+
+/* Input and Select Elements */
+.form-input,
+.member-select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  color: #f5f5f5;
+  background: #2b2d42;
+  border: 1px solid #2ec4b6;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.form-input:focus,
+.member-select:focus {
+  outline: none;
+  background: #3a3d5c;
+  border-color: #2ec4b6;
+}
+
+/* Textarea Styling */
+.form-textarea {
+  width: 100%;
+  padding: 12 20px;
+  font-size: 1rem;
+  color: #f5f5f5;
+  background: #2b2d42;
+  border: 1px solid #2ec4b6;
+  border-radius: 8px;
+  resize: vertical;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.form-textarea:focus {
+  outline: none;
+  background: #3a3d5c;
+  border-color: #2ec4b6;
+}
+
+/* Rating Section */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.rating-group {
+  margin-bottom: 10px;
+}
+
+.rating-label {
+  font-size: 1rem;
+  color: #f5f5f5;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Rating Stars */
+.rating-stars {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.rating-input {
+  display: none;
+}
+
+.star {
+  font-size: 1.8rem;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.star.filled {
+  color: #ffd700;
+}
+
+/* Submit Button */
+.submit-button {
+  display: inline-block;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2ec4b6, #218a92);
+  border: none;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #218a92, #2ec4b6);
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Teammanagement Instructor Page Style */
+/* Instructor Info */
+.instructor-info {
+  background: #2b2d42;
+  color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px auto;
+  text-align: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  font-size: 1.1rem;
+}
+
+/* Menu Container */
+.menu-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.menu-toggle-button {
+  padding: 12px 24px;
+  background-color: #2ec4b6;
+  color: #f5f5f5;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-toggle-button:hover {
+  background-color: #3a3d5c;
+  transform: scale(1.05);
+}
+
+.menu-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+}
+
+.menu-links .btn {
+  flex: 1;
+  padding: 12px;
+  background-color: #2b2d42;
+  color: #f5f5f5;
+  font-weight: bold;
+  border-radius: 6px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-links .btn:hover {
+  background-color: #2ec4b6;
+  transform: translateY(-2px);
+}
+
+/* Team Management Section */
+.team-management-section {
+  background: #1a1a2e;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2ec4b6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Team Creation Form */
+.team-creation-form {
+  background: #2b2d42;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  color: #f5f5f5;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.form-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.form-controls label {
+  color: #f5f5f5;
+  font-weight: bold;
+}
+
+.student-count-select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #2ec4b6;
+  background: #1a1a2e;
+  color: #f5f5f5;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.student-count-select:hover,
+.student-count-select:focus {
+  border-color: #3a3d5c;
+}
+
+.generate-inputs {
+  background-color: #2ec4b6;
+  color: #f5f5f5;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.generate-inputs:hover {
+  background-color: #3a3d5c;
 }
 
 /* Student Input Fields */
 .student-input {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  margin-bottom: 10px;
 }
 
-.student-input input {
+.team-name-input label {
+  color: #f5f5f5;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.input-text {
   width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  color: #555;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: background 0.3s ease, border 0.3s ease;
-  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #2ec4b6;
+  border-radius: 6px;
+  background-color: #1a1a2e;
+  color: #f5f5f5;
+  transition: background-color 0.3s ease;
 }
 
-.student-input input:focus {
+.input-text:focus {
   outline: none;
-  background: #fff;
-  border-color: #2ec4b6;
+  background-color: #3a3d5c;
 }
 
-.student-input input::placeholder {
-  color: #aaa;
+/* Submit Button Container */
+.submit-button-container {
+  text-align: center;
+  margin-top: 15px;
 }
 
-/* Generate Inputs Button Styling */
-.toolbar button {
-  padding: 12px 28px;
-  font-size: 1.1rem;
+.submit-team-button {
+  padding: 12px 24px;
   background-color: #2ec4b6;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  color: #f5f5f5;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.toolbar button:hover {
-  background-color: #1d9a8b;
+.submit-team-button:hover {
+  background-color: #3a3d5c;
   transform: scale(1.05);
 }
 
-/* Button Container */
+/* CSV Upload Section */
+.csv-upload-section {
+  background: #2b2d42;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.input-file {
+  padding: 10px;
+  background-color: #1a1a2e;
+  border-radius: 6px;
+  border: 1px solid #2ec4b6;
+  color: #f5f5f5;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.upload-csv-button {
+  padding: 12px 24px;
+  background-color: #2ec4b6;
+  color: #f5f5f5;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+}
+
+.upload-csv-button:hover {
+  background-color: #3a3d5c;
+  transform: scale(1.05);
+}
+
+/* HandleTeams for Instructors Style */
+/* General Options Container Styling */
+.options-container {
+  background: #1a1a2e;
+  border-radius: 10px;
+  padding: 25px;
+  margin: 25px auto;
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.options-title {
+  font-size: 1.8rem;
+  color: #2ec4b6;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Options Buttons */
+.options-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.option-button {
+  padding: 12px 18px;
+  background-color: #2b2d42;
+  color: #f5f5f5;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.option-button:hover {
+  background-color: #2ec4b6;
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Teams Display Section */
+.teams-display,
+.modify-teams,
+.add-member-section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2ec4b6;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.no-teams-message,
+.no-members-message {
+  color: #e63946;
+  text-align: center;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Team Card Styling */
+.team-card {
+  background: #2b2d42;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.team-name {
+  font-size: 1.3rem;
+  color: #f5f5f5;
+  margin-bottom: 12px;
+}
+
+.members-title {
+  font-size: 1.1rem;
+  color: #f5f5f5;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Members List */
+.members-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Spacing between member items */
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* Space between email and action buttons */
+  padding: 10px;
+  color: #f5f5f5;
+  background-color: #3a3d5c;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.member-item:hover {
+  background-color: #2ec4b6;
+}
+
+/* Remove Button */
+.remove-button {
+  padding: 6px 12px;
+  background-color: #e63946;
+  color: #f5f5f5;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 5px; /* Space between Remove and Change Team dropdown */
+}
+
+.remove-button:hover {
+  background-color: #c5303b;
+}
+
+/* Team Select Dropdown */
+.team-select {
+  padding: 8px;
+  border: 1px solid #2ec4b6;
+  border-radius: 6px;
+  background-color: #1a1a2e;
+  color: #f5f5f5;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.team-select:focus {
+  outline: none;
+  border-color: #3a3d5c;
+}
+
+.change-team-dropdown {
+  margin-left: 10px; /* Space between email and dropdown */
+  padding: 6px;
+  border-radius: 5px;
+  background-color: #1a1a2e;
+  color: #f5f5f5;
+  border: 1px solid #2ec4b6;
+  cursor: pointer;
+}
+
+/* User Select and Add Member Button */
+.user-select {
+  padding: 10px;
+  border: 1px solid #2ec4b6;
+  border-radius: 6px;
+  background-color: #1a1a2e;
+  color: #f5f5f5;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.user-select:focus {
+  outline: none;
+  border-color: #3a3d5c;
+}
+
+.add-member-button {
+  margin-top: 12px;
+  padding: 10px 20px;
+  background-color: #2ec4b6;
+  color: #f5f5f5;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.add-member-button:hover {
+  background-color: #3a3d5c;
+  transform: translateY(-2px);
+}
+
+/* Updated Styles for AssessmentResults Component */
+
+/* Header Styling */
+.header2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2b2d42;
+  color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  max-width: 90%;
+}
+
+/* Dropdown and Label Styling */
+.results-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background-color: #3a3d5c;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+}
+
+.selection-label {
+  color: #f5f5f5;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+
+.selection-dropdown {
+  padding: 8px;
+  width: 100%;
+  max-width: 380px;
+  background-color: #2b2d42;
+  border: 1px solid #2ec4b6;
+  border-radius: 5px;
+  color: #f5f5f5;
+  font-size: 1rem;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.selection-dropdown:focus {
+  border-color: #2ec4b6;
+}
+
+/* Message Styling */
+.no-assessed-message {
+  color: #e63946;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Results Container */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #3a3d5c;
+  max-width: 95%;
+  margin: 0 auto;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  overflow-x: auto; /* Ensures tables stay within the container on smaller screens */
+}
+
+/* Export Buttons */
 .button-container {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 1.5rem;
-}
-
-.button-container .btn {
-  width: 200px;
-  padding: 12px;
-  background-color: #2ec4b6;
-  color: white;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
-}
-
-.button-container .btn:hover {
-  background-color: #1d9a8b;
-  transform: scale(1.05);
-}
-
-/* CSV Upload Section Styling */
-.csv-upload {
-  background: #ffffff;
-  padding: 2.5rem 3rem;
-  border-radius: 15px;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 650px;
-  margin: 2rem auto;
-  color: #333;
-}
-
-.csv-upload h3 {
-  font-size: 1.8rem;
-  color: #333;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  border-bottom: 2px solid #2ec4b6;
-  padding-bottom: 0.5rem;
-}
-
-.csv-upload input[type="file"] {
-  padding: 12px;
-  font-size: 1rem;
-  color: #555;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  cursor: pointer;
-}
-
-.csv-upload button {
-  padding: 12px 28px;
-  background-color: #2ec4b6;
-  border: none;
-  border-radius: 30px;
-  color: white;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
-}
-
-.csv-upload button:hover {
-  background-color: #1d9a8b;
-  transform: scale(1.05);
-}
-
-/* Container for Team Management Options */
-.options-container {
-  text-align: center;
-  margin-top: 80px;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Styling for Team Management Option Buttons */
-.options .option-btn {
-  padding: 12px 30px;
-  background-color: #4a90e2; /* Soft blue background */
-  border: none;
-  border-radius: 30px;
-  color: white;
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.options .option-btn:hover {
-  background-color: #357ab7; /* Slightly darker blue */
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-}
-
-/* Teams Display Section */
-.teams-container {
-  margin-top: 2rem;
-  text-align: left;
-}
-
-.teams-container h3 {
-  font-size: 1.8rem;
-  color: #333;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #4a90e2;
-  padding-bottom: 0.5rem;
-}
-
-.team-item {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.team-item h4 {
-  font-size: 1.6rem;
-  color: #333;
-  font-weight: 600;
-}
-
-.team-item ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.team-item ul li {
-  font-size: 1rem;
-  color: #555;
-  padding: 5px 0;
-}
-
-.team-item ul li button {
-  padding: 8px 15px;
-  background-color: #e63946; /* Red button for removal */
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.team-item ul li button:hover {
-  background-color: #d81e2a;
-  transform: scale(1.05);
-}
-
-.team-item select {
-  padding: 8px 15px;
-  font-size: 1rem;
-  background: #f1f1f1;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: background 0.3s ease, border-color 0.3s ease;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.team-item select:focus {
-  outline: none;
-  background: #fff;
-  border-color: #4a90e2; /* Blue focus border */
-}
-
-/* Modify Teams Section */
-.modify-teams-container {
-  margin-top: 2rem;
-}
-
-.modify-teams-container h3 {
-  font-size: 1.8rem;
-  color: #333;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #4a90e2;
-  padding-bottom: 0.5rem;
-}
-
-.modify-teams-container .team-item {
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.modify-teams-container select {
-  padding: 10px 15px;
-  font-size: 1rem;
-  color: #555;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-top: 10px;
-  width: 100%;
-  transition: background 0.3s ease;
-}
-
-.modify-teams-container select:focus {
-  outline: none;
-  background: #fff;
-  border-color: #4a90e2;
-}
-
-/* Add Member to Team Section */
-.add-member-container {
-  margin-top: 2rem;
-}
-
-.add-member-container h3 {
-  font-size: 1.8rem;
-  color: #333;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #4a90e2;
-  padding-bottom: 0.5rem;
-}
-
-.add-member-container .team-item {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
-}
-
-.add-member-container select {
-  padding: 10px 15px;
-  font-size: 1rem;
-  color: #555;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-top: 10px;
-  width: 100%;
-  transition: background 0.3s ease;
-}
-
-.add-member-container select:focus {
-  outline: none;
-  background: #fff;
-  border-color: #4a90e2;
-}
-
-.add-member-container button {
-  padding: 12px 28px;
-  font-size: 1.1rem;
-  background-color: #4a90e2; /* Soft blue background */
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.add-member-container button:hover {
-  background-color: #357ab7; /* Slightly darker blue */
-  transform: scale(1.05);
-}
-
-/* Loading State */
-.loading {
-  font-size: 1.5rem;
-  color: #4a90e2; /* Blue color for loading */
-  text-align: center;
-  margin-top: 2rem;
-}
-
-/* Results Selection Section */
-.results-selection {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-top: 40px;
-  text-align: center;
-  color: #f5f5f5;
-}
-
-/* Dropdown Styling */
-.results-selection label {
-  font-size: 1.1rem;
-  color: #f5f5f5;
-}
-
-.results-selection select {
-  padding: 10px;
-  font-size: 1rem;
-  color: #333;
-  background: #f9f9f9;
-  border: 1px solid #2ec4b6;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-
-.results-selection select:focus {
-  outline: none;
-  background: #ffffff;
-  border-color: #2ec4b6;
-}
-
-/* Message when no assessed students are found */
-.no-assessed-message {
-  font-size: 1.1rem;
-  color: #e63946;
-  margin-top: 10px;
-}
-
-/* Results Table Container */
-.results-container {
-  margin-top: 30px;
-  color: #f5f5f5;
-}
-
-/* Results Tables */
-.results-table {
-  width: 100%;
-  max-width: 1000px;
-  margin: 20px auto;
-  background: #3a3d5c;
-  border-radius: 8px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.results-table h3 {
-  font-size: 1.4rem;
-  color: #2ec4b6;
-  text-align: center;
-  margin: 15px 0;
-  font-weight: bold;
-}
-
-/* Table Header Styling */
-.results-table thead th {
-  padding: 12px;
-  font-size: 1rem;
-  background-color: #2b2d42;
-  color: #f5f5f5;
-  text-align: left;
-  font-weight: bold;
-}
-
-/* Table Row and Cell Styling */
-.results-table tbody tr {
-  transition: background-color 0.3s;
-}
-
-.results-table tbody tr:hover {
-  background-color: #2ec4b6;
-}
-
-.results-table tbody td {
-  padding: 12px;
-  font-size: 0.9rem;
-  border-top: 1px solid #2b2d42;
-  color: #f5f5f5;
-}
-
-/* Loading State */
-.loading-message {
-  font-size: 1.5rem;
-  color: #2ec4b6;
-  text-align: center;
-  margin-top: 40px;
-}
-
-/* Additional Message Styling */
-.no-data-message {
-  font-size: 1.1rem;
-  color: #e63946;
-  text-align: center;
-  margin-top: 20px;
+  margin-bottom: 15px;
 }
 
 .export-button {
-  padding: 10px 15px;
-  font-size: 1rem;
-  color: #f5f5f5;
+  padding: 8px 16px;
   background-color: #2ec4b6;
   border: none;
   border-radius: 8px;
-  margin: 10px;
-  cursor: pointer;
+  color: #f5f5f5;
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  text-decoration: none; /* removes underline for CSV link */
-  display: inline-block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .export-button:hover {
+  background-color: #2b2d42;
+  color: #2ec4b6;
+  transform: scale(1.06);
+}
+
+/* Table Styling */
+.results-table {
+  background-color: #2b2d42;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  overflow-x: auto; /* Keeps tables within bounds on smaller screens */
+}
+
+.table-title {
+  color: #f5f5f5;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.assessment-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.assessment-table th,
+.assessment-table td {
+  padding: 10px;
+  border: 1px solid #3a3d5c;
+  color: #f5f5f5;
+  font-size: 0.95rem;
+  text-align: center;
+  word-wrap: break-word; /* Ensures text stays within cells */
+}
+
+.assessment-table th {
+  background-color: #2ec4b6;
+  color: #2b2d42;
+  font-weight: bold;
+}
+
+.assessment-table td {
   background-color: #3a3d5c;
+  transition: background-color 0.3s;
+}
+
+.assessment-table tr:hover td {
+  background-color: #2b2d42;
+}
+
+/* Requests Page */
+/* Request Section Container */
+.requestsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Individual Request Card */
+.requestCard {
+  background-color: #2b2d42;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #f5f5f5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.requestCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Request Details */
+.studentEmail,
+.currentTeam,
+.requestedTeam,
+.requestMessage {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.studentEmail strong,
+.currentTeam strong,
+.requestedTeam strong,
+.requestMessage strong {
+  color: #2ec4b6;
+}
+
+/* Action Buttons Container */
+.requestActions {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Approve Button */
+.approveButton {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #f5f5f5;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.approveButton:hover {
+  background-color: #218838;
   transform: scale(1.05);
+}
+
+/* Reject Button */
+.rejectButton {
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: #f5f5f5;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.rejectButton:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+/* No Requests Message */
+.noRequestsMessage {
+  font-size: 1.2rem;
+  color: #ffdd57;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Analysis Style */
+/* Selection Section */
+.selection-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selection-section label {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.selection-section select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #555;
+  cursor: pointer;
+}
+
+/* Dimension Buttons */
+.dimension-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+  justify-content: center;
+}
+
+.dimension-buttons button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dimension-buttons button:hover {
+  background-color: #0056b3;
+}
+
+/* Analysis Section */
+.analysis-section {
+  margin: 20px 0;
+  padding: 25px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.analysis-section h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.analysis-section p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* Analysis Table */
+.analysis-table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-table th,
+.analysis-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.analysis-table th {
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.analysis-table tr:nth-child(even) {
+  background-color: #f1f5f9;
+}
+
+.analysis-table td {
+  color: #333;
+}
+
+/* Charts */
+.charts {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.charts h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.recharts-wrapper {
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dimension-buttons {
+    flex-direction: column;
+  }
+
+  .analysis-section {
+    padding: 15px;
+  }
+
+  .charts {
+    gap: 20px;
+  }
+
+  .analysis-table th,
+  .analysis-table td {
+    padding: 8px 10px;
+  }
 }
