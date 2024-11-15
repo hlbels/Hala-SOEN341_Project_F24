@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../client";
 import { CSVLink } from "react-csv";
 import jsPDF from "jspdf";
@@ -15,6 +16,7 @@ const AssessmentResults = () => {
   const [workEthicAssessments, setWorkEthicAssessments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [noAssessedMessage, setNoAssessedMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -246,12 +248,57 @@ const AssessmentResults = () => {
   return (
     <div className="container">
       <header className="header1">
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          alt="Logo"
+          className="logo"
+        />
+        <h2>
+          PInsights <br /> Peer Assessment
+        </h2>
+      </header>
+
+      {/* Sidebar for Login, Sign Up, Contact Us, and Welcome Page */}
+      <nav className="sidebar">
+        <div className="menu-buttons">
+          <button className="btn" onClick={() => navigate("/team-management")}>
+            Team Management
+          </button>
+          <button className="btn" onClick={() => navigate("/handle-teams")}>
+            Show teams
+          </button>
+          <button
+            className="btn"
+            onClick={() => navigate("/assessment-results")}
+          >
+            Assessment Results
+          </button>
+          <button className="btn" onClick={() => navigate("/analysis")}>
+            Analyze Results
+          </button>
+          <button className="btn" onClick={() => navigate("/requests")}>
+            View Requests
+          </button>
+          <button className="btn" onClick={() => navigate("/")}>
+            Logout
+          </button>
+          <button className="btn" onClick={() => navigate("/contact-us")}>
+            Contact Us
+          </button>
+        </div>
+      </nav>
+
+      <header className="header2">
         <h2>Select Assessor and Assessed Student</h2>
       </header>
 
       <div className="results-selection">
-        <label>Select Assessor:</label>
-        <select onChange={handleAssessorChange} value={selectedAssessor || ""}>
+        <label className="selection-label">Select Assessor:</label>
+        <select
+          onChange={handleAssessorChange}
+          value={selectedAssessor || ""}
+          className="selection-dropdown"
+        >
           <option value="">-- Select an Assessor --</option>
           {students.map((student) => (
             <option key={student.id} value={student.id}>
@@ -266,10 +313,13 @@ const AssessmentResults = () => {
               <p className="no-assessed-message">{noAssessedMessage}</p>
             ) : (
               <>
-                <label>Select Assessed Student:</label>
+                <label className="selection-label">
+                  Select Assessed Student:
+                </label>
                 <select
                   onChange={handleAssessedChange}
                   value={selectedAssessed || ""}
+                  className="selection-dropdown"
                 >
                   <option value="">-- Select an Assessed Student --</option>
                   {assessedStudents.map((student) => (
@@ -286,7 +336,7 @@ const AssessmentResults = () => {
 
       {selectedAssessed && (
         <div className="results-container">
-          {/* Buttons for CSV and PDF export */}
+          {/* Export Buttons */}
           <div className="button-container">
             <CSVLink
               data={csvData}
@@ -300,12 +350,12 @@ const AssessmentResults = () => {
             </button>
           </div>
 
-          {/* Display assessment tables */}
+          {/* Display Assessment Results */}
           {/* Peer Assessment Results */}
           {assessments.length > 0 && (
             <div className="results-table">
-              <h3>Peer Assessment Results</h3>
-              <table>
+              <h3 className="table-title">Peer Assessment Results</h3>
+              <table className="assessment-table">
                 <thead>
                   <tr>
                     <th>Communication</th>
@@ -339,8 +389,8 @@ const AssessmentResults = () => {
           {/* Conceptual Contribution Results */}
           {conceptualAssessments.length > 0 && (
             <div className="results-table">
-              <h3>Conceptual Contribution Results</h3>
-              <table>
+              <h3 className="table-title">Conceptual Contribution Results</h3>
+              <table className="assessment-table">
                 <thead>
                   <tr>
                     <th>Conceptual 1</th>
@@ -374,8 +424,8 @@ const AssessmentResults = () => {
           {/* Practical Contribution Results */}
           {practicalAssessments.length > 0 && (
             <div className="results-table">
-              <h3>Practical Contribution Results</h3>
-              <table>
+              <h3 className="table-title">Practical Contribution Results</h3>
+              <table className="assessment-table">
                 <thead>
                   <tr>
                     <th>Practical 1</th>
@@ -409,8 +459,8 @@ const AssessmentResults = () => {
           {/* Work Ethic Results */}
           {workEthicAssessments.length > 0 && (
             <div className="results-table">
-              <h3>Work Ethic Results</h3>
-              <table>
+              <h3 className="table-title">Work Ethic Results</h3>
+              <table className="assessment-table">
                 <thead>
                   <tr>
                     <th>Work 1</th>

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../client";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ShowTeams = () => {
   const [teams, setTeams] = useState([]);
   const [userTeam, setUserTeam] = useState(null);
   const [requestTeamId, setRequestTeamId] = useState(null);
   const [requestMessage, setRequestMessage] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchUserTeamAndTeams = async () => {
-      // Ensure getUser returns a response structure with `data`
       const userResponse = await supabase.auth.getUser();
       if (!userResponse || !userResponse.data) {
         console.error("Error fetching user: User data is undefined");
@@ -149,40 +148,70 @@ const ShowTeams = () => {
           className="logo"
         />
         <h2>
-          Sharky <br /> Peer Assessment
+          PInsights <br /> Peer Assessment
         </h2>
       </header>
 
-      <div className="show-teams-container">
+      {/* Sidebar for Login, Sign Up, Contact Us, and Welcome Page */}
+      <nav className="sidebar">
+        <div className="menu-buttons">
+          <button className="btn" onClick={() => navigate("/homepage")}>
+            Homepage
+          </button>
+          <button className="btn" onClick={() => navigate("/show-teams")}>
+            Teams
+          </button>
+          <button className="btn" onClick={() => navigate("/Assessment")}>
+            Assessment
+          </button>
+          <button className="btn" onClick={() => navigate("/contact-us")}>
+            Contact Us
+          </button>
+          <button className="btn" onClick={() => navigate("/logout")}>
+            Logout
+          </button>
+        </div>
+      </nav>
+
+      <div className="teamsContainer">
         <h2>All Teams</h2>
         {teams.length === 0 ? (
           <p>No teams found.</p>
         ) : (
-          <div>
+          <div className="teamList">
             {teams.map((team) => (
-              <div key={team.id} className="team-item">
+              <div key={team.id} className="teamItem">
                 <h3>{team.teamname}</h3>
                 <p>Members:</p>
-                <ul className="members-list">
+                <ul className="membersList">
                   {team.team_members.map((member) => (
                     <li key={member.user_id}>{member.users.email}</li>
                   ))}
                 </ul>
                 {userTeam === team.id ? (
-                  <button onClick={handleLeaveTeam}>Leave Team</button>
+                  <button
+                    className="button leaveButton"
+                    onClick={handleLeaveTeam}
+                  >
+                    Leave Team
+                  </button>
                 ) : (
                   <>
-                    <button onClick={() => setRequestTeamId(team.id)}>
+                    <button
+                      className="button requestButton"
+                      onClick={() => setRequestTeamId(team.id)}
+                    >
                       Request to Join
                     </button>
                     {requestTeamId === team.id && (
-                      <div className="request-message-box">
+                      <div className="requestMessageBox">
                         <textarea
                           placeholder="Explain why you want to join this team..."
                           value={requestMessage}
                           onChange={(e) => setRequestMessage(e.target.value)}
                         />
                         <button
+                          className="button sendRequestButton"
                           onClick={() => handleRequestToJoinTeam(team.id)}
                         >
                           Send Request

@@ -125,32 +125,37 @@ const Assessment = () => {
           className="logo"
         />
         <h2>
-          Sharky <br /> Peer Assessment
+          PInsights <br /> Peer Assessment
         </h2>
       </header>
 
       {/* Sidebar for Login, Sign Up, Contact Us, and Welcome Page */}
       <nav className="sidebar">
         <div className="menu-buttons">
-          <button className="btn" onClick={() => navigate("/login")}>
-            Login
+          <button className="btn" onClick={() => navigate("/homepage")}>
+            Homepage
           </button>
-          <button className="btn" onClick={() => navigate("/signup")}>
-            Sign Up
+          <button className="btn" onClick={() => navigate("/show-teams")}>
+            Teams
+          </button>
+          <button className="btn" onClick={() => navigate("/Assessment")}>
+            Assessment
           </button>
           <button className="btn" onClick={() => navigate("/contact-us")}>
             Contact Us
           </button>
-          <button className="btn" onClick={() => navigate("/")}>
-            About Sharky
+          <button className="btn" onClick={() => navigate("/logout")}>
+            Logout
           </button>
         </div>
       </nav>
 
-      <div className="formcontainer">
-        <h3>Evaluation Form</h3>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="Assessorid">Your ID:</label>
+      <div className="assessment-form-container">
+        <h3 className="assessment-title">Evaluation Form</h3>
+        <form onSubmit={handleSubmit} className="assessment-form">
+          <label htmlFor="Assessorid" className="form-label">
+            Your ID:
+          </label>
           <input
             type="text"
             id="Assessorid"
@@ -158,10 +163,15 @@ const Assessment = () => {
             value={formData.Assessorid}
             onChange={handleInputChange}
             required
+            className="form-input"
           />
 
-          <h3>Select Team Member</h3>
-          <select value={selectedMember} onChange={handleMemberSelection}>
+          <h3 className="member-select-title">Select Team Member</h3>
+          <select
+            value={selectedMember}
+            onChange={handleMemberSelection}
+            className="member-select"
+          >
             <option value="">Select a team member</option>
             {teamMembers.map((member) => (
               <option key={member.user_id} value={member.email}>
@@ -170,17 +180,19 @@ const Assessment = () => {
             ))}
           </select>
 
-          <h2>ASSESSMENT DIMENSION: COOPERATION</h2>
+          <h2 className="assessment-dimension-title">
+            ASSESSMENT DIMENSION: COOPERATION
+          </h2>
 
           <div className="form-group">
-            <div className="rating">
-              <label>
+            <div className="rating-group">
+              <label className="rating-label">
                 <b>
                   1. Did this team member communicate effectively with the rest
                   of the group?
                 </b>
               </label>
-              <div style={{ display: "flex", gap: "5px", cursor: "pointer" }}>
+              <div className="rating-stars">
                 {[1, 2, 3, 4, 5].map((value) => (
                   <label key={value}>
                     <input
@@ -189,15 +201,13 @@ const Assessment = () => {
                       value={value}
                       checked={formData.Communication === String(value)}
                       onChange={handleInputChange}
-                      style={{ display: "none" }}
+                      className="rating-input"
                       required
                     />
                     <span
-                      style={{
-                        fontSize: "1.5rem",
-                        color:
-                          value <= formData.Communication ? "#FFD700" : "#ccc",
-                      }}
+                      className={`star ${
+                        value <= formData.Communication ? "filled" : ""
+                      }`}
                     >
                       ★
                     </span>
@@ -208,14 +218,14 @@ const Assessment = () => {
           </div>
 
           <div className="form-group">
-            <div className="rating">
-              <label>
+            <div className="rating-group">
+              <label className="rating-label">
                 <b>
                   2. Did this team member actively participate in group
                   discussions?
                 </b>
               </label>
-              <div style={{ display: "flex", gap: "5px", cursor: "pointer" }}>
+              <div className="rating-stars">
                 {[1, 2, 3, 4, 5].map((value) => (
                   <label key={value}>
                     <input
@@ -224,15 +234,13 @@ const Assessment = () => {
                       value={value}
                       checked={formData.Participation === String(value)}
                       onChange={handleInputChange}
-                      style={{ display: "none" }}
+                      className="rating-input"
                       required
                     />
                     <span
-                      style={{
-                        fontSize: "1.5rem",
-                        color:
-                          value <= formData.Participation ? "#FFD700" : "#ccc",
-                      }}
+                      className={`star ${
+                        value <= formData.Participation ? "filled" : ""
+                      }`}
                     >
                       ★
                     </span>
@@ -243,13 +251,13 @@ const Assessment = () => {
           </div>
 
           <div className="form-group">
-            <div className="rating">
-              <label>
+            <div className="rating-group">
+              <label className="rating-label">
                 <b>
                   3. Was this team member willing to assist others when needed?
                 </b>
               </label>
-              <div style={{ display: "flex", gap: "5px", cursor: "pointer" }}>
+              <div className="rating-stars">
                 {[1, 2, 3, 4, 5].map((value) => (
                   <label key={value}>
                     <input
@@ -258,15 +266,13 @@ const Assessment = () => {
                       value={value}
                       checked={formData.Assistance === String(value)}
                       onChange={handleInputChange}
-                      style={{ display: "none" }}
+                      className="rating-input"
                       required
                     />
                     <span
-                      style={{
-                        fontSize: "1.5rem",
-                        color:
-                          value <= formData.Assistance ? "#FFD700" : "#ccc",
-                      }}
+                      className={`star ${
+                        value <= formData.Assistance ? "filled" : ""
+                      }`}
                     >
                       ★
                     </span>
@@ -277,14 +283,14 @@ const Assessment = () => {
           </div>
 
           <div className="form-group">
-            <div className="rating">
-              <label>
+            <div className="rating-group">
+              <label className="rating-label">
                 <b>
                   4. Did this team member respect and consider the ideas and
                   perspectives of others?
                 </b>
               </label>
-              <div style={{ display: "flex", gap: "5px", cursor: "pointer" }}>
+              <div className="rating-stars">
                 {[1, 2, 3, 4, 5].map((value) => (
                   <label key={value}>
                     <input
@@ -293,14 +299,13 @@ const Assessment = () => {
                       value={value}
                       checked={formData.Respect === String(value)}
                       onChange={handleInputChange}
-                      style={{ display: "none" }}
+                      className="rating-input"
                       required
                     />
                     <span
-                      style={{
-                        fontSize: "1.5rem",
-                        color: value <= formData.Respect ? "#FFD700" : "#ccc",
-                      }}
+                      className={`star ${
+                        value <= formData.Respect ? "filled" : ""
+                      }`}
                     >
                       ★
                     </span>
@@ -311,14 +316,14 @@ const Assessment = () => {
           </div>
 
           <div className="form-group">
-            <div className="rating">
-              <label>
+            <div className="rating-group">
+              <label className="rating-label">
                 <b>
                   5. How well did this team member adapt to changes in the
                   project or team dynamics?
                 </b>
               </label>
-              <div style={{ display: "flex", gap: "5px", cursor: "pointer" }}>
+              <div className="rating-stars">
                 {[1, 2, 3, 4, 5].map((value) => (
                   <label key={value}>
                     <input
@@ -329,17 +334,15 @@ const Assessment = () => {
                         formData.AdaptibilityandFlexibility === String(value)
                       }
                       onChange={handleInputChange}
-                      style={{ display: "none" }}
+                      className="rating-input"
                       required
                     />
                     <span
-                      style={{
-                        fontSize: "1.5rem",
-                        color:
-                          value <= formData.AdaptibilityandFlexibility
-                            ? "#FFD700"
-                            : "#ccc",
-                      }}
+                      className={`star ${
+                        value <= formData.AdaptibilityandFlexibility
+                          ? "filled"
+                          : ""
+                      }`}
                     >
                       ★
                     </span>
@@ -350,14 +353,14 @@ const Assessment = () => {
           </div>
 
           <div className="form-group">
-            <div className="rating">
-              <label>
+            <div className="rating-group">
+              <label className="rating-label">
                 <b>
                   6. Did they collaborate to find solutions rather than escalate
                   issues?
                 </b>
               </label>
-              <div style={{ display: "flex", gap: "5px", cursor: "pointer" }}>
+              <div className="rating-stars">
                 {[1, 2, 3, 4, 5].map((value) => (
                   <label key={value}>
                     <input
@@ -366,17 +369,13 @@ const Assessment = () => {
                       value={value}
                       checked={formData.Conflict_Resolution === String(value)}
                       onChange={handleInputChange}
-                      style={{ display: "none" }}
+                      className="rating-input"
                       required
                     />
                     <span
-                      style={{
-                        fontSize: "1.5rem",
-                        color:
-                          value <= formData.Conflict_Resolution
-                            ? "#FFD700"
-                            : "#ccc",
-                      }}
+                      className={`star ${
+                        value <= formData.Conflict_Resolution ? "filled" : ""
+                      }`}
                     >
                       ★
                     </span>
@@ -387,14 +386,14 @@ const Assessment = () => {
           </div>
 
           <div className="form-group">
-            <div className="rating">
-              <label>
+            <div className="rating-group">
+              <label className="rating-label">
                 <b>
                   7. Did this team member collaborate effectively and contribute
                   to a positive team environment?
                 </b>
               </label>
-              <div style={{ display: "flex", gap: "5px", cursor: "pointer" }}>
+              <div className="rating-stars">
                 {[1, 2, 3, 4, 5].map((value) => (
                   <label key={value}>
                     <input
@@ -403,15 +402,13 @@ const Assessment = () => {
                       value={value}
                       checked={formData.Cooperation === String(value)}
                       onChange={handleInputChange}
-                      style={{ display: "none" }}
+                      className="rating-input"
                       required
                     />
                     <span
-                      style={{
-                        fontSize: "1.5rem",
-                        color:
-                          value <= formData.Cooperation ? "#FFD700" : "#ccc",
-                      }}
+                      className={`star ${
+                        value <= formData.Cooperation ? "filled" : ""
+                      }`}
                     >
                       ★
                     </span>
@@ -421,20 +418,22 @@ const Assessment = () => {
             </div>
           </div>
 
-          <label htmlFor="Commentsection">
+          <label htmlFor="Commentsection" className="form-label">
             COOPERATION - Additional Feedback:
           </label>
           <textarea
             id="Commentsection"
             name="Commentsection"
             rows="3"
-            style={{ width: "100%" }}
+            className="form-textarea"
             value={formData.Commentsection}
             onChange={handleInputChange}
             placeholder="Write any comments here..."
           />
 
-          <button type="submit">NEXT</button>
+          <button type="submit" className="submit-button">
+            NEXT
+          </button>
         </form>
       </div>
     </div>

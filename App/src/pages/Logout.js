@@ -15,7 +15,7 @@ const Logout = () => {
     const token = localStorage.getItem("token");
     if (!token) {
       // If no token, already logged out, redirect to home page (or login page if needed)
-      navigate("/", { replace: true });
+      navigate("/logout", { replace: true });
     }
   }, [navigate]);
 
@@ -29,7 +29,7 @@ const Logout = () => {
           className="logo"
         />
         <h2>
-          Sharky <br /> Peer Assessment
+          PInsights <br /> Peer Assessment
         </h2>
       </header>
 
